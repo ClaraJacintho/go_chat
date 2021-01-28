@@ -17,3 +17,5 @@ class ChatHistory extends Component {
         )
     }
 }
+
+export default ChatHistory;
