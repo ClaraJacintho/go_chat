@@ -25,7 +25,7 @@ func (pool *Pool) Start() {
 			pool.Clients[client] = true
 			fmt.Println("Size of pool: ", len(pool.Clients))
 			for client, _ := range pool.Clients {
-				fmt.Println(client)
+				fmt.Println("Client ", client)
 				client.Conn.WriteJSON(Message{Type: 1, Body: "New User Joined"})
 			}
 			break
@@ -33,7 +33,7 @@ func (pool *Pool) Start() {
 			delete(pool.Clients, client)
 			fmt.Println("Size of pool: ", len(pool.Clients))
 			for client, _ := range pool.Clients {
-				fmt.Println(client)
+				fmt.Println("Client ", client)
 				client.Conn.WriteJSON(Message{Type: 1, Body: "User disconnected"})
 			}
 			break
@@ -41,7 +41,7 @@ func (pool *Pool) Start() {
 			fmt.Println("Sending message to all users")
 			for client, _ := range pool.Clients {
 				if err := client.Conn.WriteJSON(message); err != nil {
-					fmt.Println(err)
+					fmt.Println("Error: ", err)
 					return
 				}
 			}

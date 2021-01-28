@@ -8,7 +8,6 @@ let connect = callback => {
     };
 
     socket.onmessage = msg => {
-        console.log(msg);
         callback(msg)
     };
 
